@@ -1,0 +1,13 @@
+*.py[cod]
+
+# Packages
+__pycache__
+
+#idea
+/.idea
+
+#env
+/env
+
+config.py
+*.db
