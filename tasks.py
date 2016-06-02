@@ -9,7 +9,7 @@ except ImportError:
     from urllib.parse import urljoin
 
 from configuration import config
-from db import metadata, table_today
+from db import metadata, table_today, table_archive
 
 DATE_FORMAT = '%Y/%m/%d'
 TIME_FORMAT = '%H:%M:%S'
@@ -51,11 +51,21 @@ def update():
     today = datetime.datetime.now(timezone).date()
     engine = metadata.bind
     data = fetch_for_date(today)
-    print(len(data))
+    if not data:
+        return
     with engine.begin() as connection:
         connection.execute(table_today.delete().where(True))
         connection.execute(table_today.insert().values(data))
 
 
 def archive():
-    pass
+    today = datetime.datetime.now(timezone).date()
+    day = datetime.timedelta(days=1)
+    yesterday = today - day
+    engine = metadata.bind
+    data = fetch_for_date(yesterday)
+    if not data:
+        return
+    with engine.begin() as connection:
+        connection.execute(table_archive.delete().where(table_archive.c.date == yesterday))
+        connection.execute(table_archive.insert().values(data))
