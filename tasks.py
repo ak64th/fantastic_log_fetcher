@@ -1,4 +1,5 @@
 import datetime
+import pytz
 import requests
 from requests.auth import HTTPBasicAuth
 
@@ -15,6 +16,7 @@ TIME_FORMAT = '%H:%M:%S'
 strptime = datetime.datetime.strptime
 
 log_centers = zip(config.LOG_CENTER_URL, config.LOG_CENTER_AUTH)
+timezone = pytz.timezone(config.TIMEZONE)
 
 
 def convert_line(line):
@@ -46,7 +48,7 @@ def fetch_for_date(date):
 
 
 def update():
-    today = datetime.datetime.now().date()
+    today = datetime.datetime.now(timezone).date()
     engine = metadata.bind
     data = fetch_for_date(today)
     print(len(data))
