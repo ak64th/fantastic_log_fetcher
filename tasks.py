@@ -36,7 +36,7 @@ def convert_line(line):
 
 
 def fetch_for_date(date):
-    filename = date.strftime('%Y%m%d') + u'.log'
+    filename = date.strftime('%Y%m%d') + u'.log.gz'
     data = []
     for url, auth in log_centers:
         target = urljoin(url, filename)
