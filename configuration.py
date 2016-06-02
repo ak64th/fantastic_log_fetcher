@@ -9,6 +9,7 @@ p.add('-d', '--database-url', required=True, dest='DATABASE_URL', env_var='DATAB
 p.add('-u', '--log-center-url', required=True, dest='LOG_CENTER_URL', nargs='+', help='log center url(s)')
 p.add('--auth', '--log-center-auth', required=True, dest='LOG_CENTER_AUTH', nargs='+',
       help='log center auth info, a $username:$password string')
+p.add('--ext', '--log-file-ext', required=True, dest='LOG_FILE_EXT', help="the filename extension of log files")
 p.add('--timezone', dest='TIMEZONE', default='Asia/Shanghai', help='timezone of scheduler')
 p.add('--update-cron', dest='UPDATE_CRON', help='cron format string, set for update schedule')
 p.add('--archive-cron', dest='ARCHIVE_CRON',

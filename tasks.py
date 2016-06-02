@@ -15,7 +15,7 @@ DATE_FORMAT = '%Y/%m/%d'
 TIME_FORMAT = '%H:%M:%S'
 strptime = datetime.datetime.strptime
 
-log_centers = zip(config.LOG_CENTER_URL, config.LOG_CENTER_AUTH)
+log_centers = list(zip(config.LOG_CENTER_URL, config.LOG_CENTER_AUTH))
 timezone = pytz.timezone(config.TIMEZONE)
 
 
@@ -36,7 +36,7 @@ def convert_line(line):
 
 
 def fetch_for_date(date):
-    filename = date.strftime('%Y%m%d') + u'.log.gz'
+    filename = date.strftime('%Y%m%d') + config.LOG_FILE_EXT
     data = []
     for url, auth in log_centers:
         target = urljoin(url, filename)
