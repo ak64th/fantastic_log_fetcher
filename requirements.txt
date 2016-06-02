@@ -1,2 +1,6 @@
-SQLAlchemy==1.0.13
+setuptools>3.6
 requests==2.10.0
+APScheduler==3.1.0
+ConfigArgParse==0.10.0
+SQLAlchemy==1.0.13
+PyMySQL==0.7.4
