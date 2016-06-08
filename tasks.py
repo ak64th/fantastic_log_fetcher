@@ -40,7 +40,7 @@ def fetch_for_date(date):
     data = []
     for url, auth in log_centers:
         target = urljoin(url, filename)
-        r = requests.get(target, auth=HTTPBasicAuth(**auth))
+        r = requests.get(target, auth=HTTPBasicAuth(**auth), stream=True)
         if r.status_code is 200:
             rows = map(convert_line, r.iter_lines())
             data.extend(rows)
