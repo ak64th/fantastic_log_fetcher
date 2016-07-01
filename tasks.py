@@ -56,8 +56,8 @@ def update():
     with engine.begin() as connection:
         connection.execute(table_today.delete().where(True))
         connection.execute(table_today.insert().values(data))
-    engine.execute('call `qiyoutong_pro`.ETL_kpi_data').close()
-    engine.execute('call `qiyoutong_pro`.ETL_report_id_001_main').close()
+        connection.execute('call `qiyoutong_pro`.ETL_kpi_data')
+        connection.execute('call `qiyoutong_pro`.ETL_report_id_001_main')
 
 
 def archive():
